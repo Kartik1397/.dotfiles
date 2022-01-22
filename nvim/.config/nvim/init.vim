@@ -58,7 +58,14 @@ function! RunCPP()
     start
 endfunction
 
+function! CompileCPP()
+    !g++ %
+    term
+    start
+endfunction
+
 autocmd FileType cpp map <F9> :call RunCPP()<CR>
+autocmd FileType cpp map <F8> :call CompileCPP()<CR>
 
 lua <<EOF
 local use = require('packer').use
