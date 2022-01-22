@@ -52,6 +52,14 @@ set background=dark
 
 set completeopt=menu,menuone,noselect
 
+function! RunCPP()
+    !g++ %
+    term ./a.out
+    start
+endfunction
+
+autocmd FileType cpp map <F9> :call RunCPP()<CR>
+
 lua <<EOF
 local use = require('packer').use
 require('packer').startup(function()
