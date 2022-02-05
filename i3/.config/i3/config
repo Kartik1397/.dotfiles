@@ -182,3 +182,4 @@ bar {
 bindsym $mod+shift+x exec i3lock
 
 exec_always feh --bg-scale /home/ktk/Downloads/wallpaperflare.com_wallpaper.jpg
+exec xinput set-prop "ELAN1200:00 04F3:3087 Touchpad" "libinput Tapping Enabled" 1
