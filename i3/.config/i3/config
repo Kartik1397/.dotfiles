@@ -180,5 +180,7 @@ bar {
         status_command i3status
 }
 bindsym $mod+shift+x exec i3lock
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +5%
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
 
 exec_always feh --bg-scale /home/ktk/Downloads/wallpaperflare.com_wallpaper.jpg
