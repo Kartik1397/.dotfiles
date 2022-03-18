@@ -14,6 +14,7 @@ set mouse=a
 set clipboard=unnamedplus
 set cursorline
 set ttyfast
+set secure exrc
 
 call plug#begin("~/.vim/plugged")
     Plug 'neovim/nvim-lspconfig'
@@ -34,6 +35,12 @@ call plug#begin("~/.vim/plugged")
     Plug 'hrsh7th/cmp-path'
     Plug 'hrsh7th/cmp-cmdline'
     Plug 'hrsh7th/nvim-cmp'
+
+    Plug 'nvim-lua/popup.nvim'
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    Plug 'nvim-telescope/telescope.nvim'
+    Plug 'nvim-telescope/telescope-fzy-native.nvim'
 
     Plug 'L3MON4D3/LuaSnip'
     Plug 'hrsh7th/cmp-vsnip'
@@ -64,8 +71,15 @@ function! CompileCPP()
     start
 endfunction
 
+function! ExecScript()
+    w
+    !chmod a+x %
+    !./%
+endfunction
+
 autocmd FileType cpp map <F9> :call RunCPP()<CR>
 autocmd FileType cpp map <F8> :call CompileCPP()<CR>
+map <F10> :call ExecScript()<CR>
 
 lua <<EOF
 local use = require('packer').use
@@ -85,7 +99,7 @@ capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 local lspconfig = require('lspconfig')
 
 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
-local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver' }
+local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'solargraph' }
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
     -- on_attach = my_custom_on_attach,
@@ -144,3 +158,38 @@ cmp.setup {
 }
 EOF
 
+lua << EOF
+local actions = require('telescope.actions')
+require('telescope').setup {
+    defaults = {
+        file_sorter = require('telescope.sorters').get_fzy_sorter,
+        prompt_prefix = ' > ',
+        color_devicons = true,
+
+        file_previewer   = require('telescope.previewers').vim_buffer_cat.new,
+        grep_previewer   = require('telescope.previewers').vim_buffer_vimgrep.new,
+        qflist_previewer = require('telescope.previewers').vim_buffer_qflist.new,
+
+        mappings = {
+            i = {
+                ["<C-x>"] = false,
+                ["<C-q>"] = actions.send_to_qflist,
+            },
+        }
+    },
+    extensions = {
+        fzy_native = {
+            override_generic_sorter = false,
+            override_file_sroter = true,
+        }
+    }
+}
+
+require('telescope').load_extension('fzy_native')
+
+EOF
+
+nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
