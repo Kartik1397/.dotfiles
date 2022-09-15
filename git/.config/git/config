@@ -1,0 +1,32 @@
+[user]
+    name = Kartik Prajapati
+    email = kartikprajapati987@gmail.com
+
+[core]
+    editor = vim
+        excludesFiles = ~/.gitignore
+
+    pager = delta
+
+
+[pull]
+    rebase = true
+
+[rebase]
+    autoStash = true
+
+[alias]
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+
+[delta]
+    line-numbers = true
+    syntax-theme = gruvbox-dark
+    side-by-side = false
+
+    file-modified-label = modified;
+
+[interactive]
+    diffFilter = delta --color-only
+[credential "https://github.com"]
+    helper = 
+    helper = !/usr/bin/gh auth git-credential
