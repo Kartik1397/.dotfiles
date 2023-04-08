@@ -6,7 +6,6 @@ require 'telescope'.setup {
         prompt_prefix = "> ",
         selection_caret = "> ",
         entry_prefix = " ",
-        multi_icon = "<>",
 
         winblend = 0,
 
@@ -41,7 +40,6 @@ require 'telescope'.setup {
         selection_strategy = "reset",
         sorting_strategy = "descending",
         scroll_strategy = "cycle",
-        color_devicons = true,
 
         mappings = {
             i = {
@@ -64,27 +62,9 @@ require 'telescope'.setup {
     },
 
     extensions = {
-        file_browser = {
-            hijack_netrw = true,
-            mappings = {
-                ["i"] = {
-                },
-                ["n"] = {
-                },
-            },
-            sorting_strategy = "ascending",
-            layout_config = {
-                prompt_position = "top",
-            },
-        },
-        ["ui-select"] = {
-            require("telescope.themes").get_dropdown {
-            },
-        },
     },
 }
 
-require 'telescope'.load_extension "file_browser"
 require 'telescope'.load_extension "ui-select"
 
 vim.api.nvim_set_keymap(
