@@ -18,7 +18,9 @@ opt.splitbelow = true
 opt.updatetime = 1000
 opt.scrolloff = 10
 
--- opt.cursorline = true
+opt.cursorline = true
+-- vim.cmd('highlight CursorLine cterm=NONE ctermbg=darkred ctermfg=white')
+vim.api.nvim_set_hl(0, 'CursorLine', { ctermfg=white, ctermbg=darkred })
 -- local group = vim.api.nvim_create_augroup("CursorLineControl", { clear = true })
 -- local set_cursorline = function(event, value, pattern)
 -- 	vim.api.nvim_create_autocmd(event, {
