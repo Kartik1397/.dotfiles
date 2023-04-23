@@ -189,6 +189,7 @@ bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
 
 bindsym $mod+Shift+w exec feh --randomize --bg-fill --auto-zoom /home/ktk/wallpaper/*
 exec_always feh --randomize --bg-scale /home/ktk/wallpaper/*
+exec_always ~/tmp/external-display
 
 exec_always xinput set-prop "ELAN1200:00 04F3:3087 Touchpad" "libinput Tapping Enabled" 1
 
