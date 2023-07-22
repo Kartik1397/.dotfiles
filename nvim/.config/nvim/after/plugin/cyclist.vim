@@ -25,5 +25,7 @@ call cyclist#add_listchar_option_set('busy', {
         \ 'nbsp': '☠',
         \ })
 
+call cyclist#activate_listchars('limited')
+
 nmap <leader>cl <Plug>CyclistNext
 

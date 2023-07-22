@@ -34,21 +34,21 @@ dap.configurations.javascript = {
   },
 }
 
-dap.configurations.typescript = {    
-  {    
-    name = "Debug (Attach) - Remote",    
-    type = "node2",    
-    request = "attach",    
-    -- program = "${file}",    
-    -- cwd = vim.fn.getcwd(),    
-    sourceMaps = true,    
-    -- reAttach = true,    
-    trace = true,    
-    -- protocol = "inspector",    
-    -- hostName = "127.0.0.1",    
-    port = 9229,    
-    webRoot = "${workspaceFolder}"    
-  }    
+dap.configurations.typescript = {
+  {
+    name = "Debug (Attach) - Remote",
+    type = "node2",
+    request = "attach",
+    -- program = "${file}",
+    -- cwd = vim.fn.getcwd(),
+    sourceMaps = true,
+    -- reAttach = true,
+    trace = true,
+    -- protocol = "inspector",
+    -- hostName = "127.0.0.1",
+    port = 9229,
+    webRoot = "${workspaceFolder}"
+  }
 }
 
 require('dap-python').setup('/usr/bin/python3')
