@@ -47,4 +47,7 @@ return require('packer').startup(function(use)
 
     -- Unclassified
     use 'tjdevries/cyclist.vim'
+
+    -- Undotree
+    use 'mbbill/undotree'
 end)
