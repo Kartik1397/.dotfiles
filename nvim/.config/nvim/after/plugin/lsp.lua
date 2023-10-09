@@ -63,6 +63,10 @@ require 'lspconfig'.tsserver.setup {
     on_attach = on_attach,
     flags = lsp_flags,
 }
+require 'lspconfig'.hls.setup {
+    on_attach = on_attach,
+    flags = lsp_flags,
+}
 require 'typescript'.setup {
     disable_commands = false,
     debug = false,
@@ -99,3 +103,4 @@ require 'lspconfig'.rust_analyzer.setup({
         }
     }
 })
+
